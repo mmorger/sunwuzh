@@ -1,0 +1,172 @@
+/*
+ *  Node event component
+ * --------------------------------------------------*/
+
+// Variables
+// -------------------------
+
+
+// Mixins
+// -------------------------
+
+
+
+// Teaser
+// -------------------------
+.view-calendar {
+  .row {
+    .col:last-child {
+      .node.node--view-mode-teaser {
+        border-bottom: solid 1px @text-color;
+        @media @tablet {
+          border-bottom: solid 1px #cacaca;
+        }
+      }
+    }
+    &:not(:first-child) {
+      .node.node--view-mode-teaser {
+        margin-top: -1px !important;
+      }
+    }
+  }
+  // Past Events
+  &.view-display-id-block_3 {
+    .col {
+      margin-bottom: 15px;
+    }
+    #pxl-mixins.date();
+    font-weight: 300;
+    time {
+      display: block;
+    }
+    .title {
+      font-weight: 600;
+    }
+    @media @tablet {
+      time {
+        display: inline;
+      }
+    }
+  }
+}
+.node.node--view-mode-teaser {
+
+  position: relative;
+  border-top: solid 1px @text-color;
+
+  @media @tablet {
+    height: 180px;
+    border-bottom: solid 1px #cacaca;
+  }
+  @media @normal {
+    height: 180px;
+    border-top: solid 2px @text-color;
+  }
+
+  .field--name-field-date {
+    #pxl-mixins.subtitle();
+    text-transform: uppercase;
+  }
+  .field--name-node-title, .field--name-field-ort {
+    #pxl-mixins.date();
+    font-weight: 300;
+    //font-family: @font-family-sans-serif;
+    //letter-spacing: 0.02em;
+    //line-height: 1.4;
+    //text-transform: uppercase;
+  }
+  .field--name-node-title {
+    font-weight: 600;
+  }
+  .field--name-field-ort {
+    padding-bottom: 20px;
+  }
+  ul.links {
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    @media @normal {
+      //padding: 0 0 10px;
+    }
+
+    .node-readmore {
+      #pxl-mixins.flexbox();
+      width: 100%;
+      height: 100%;
+      justify-content: flex-end;
+
+      a {
+        align-self: flex-end;
+        padding-bottom: 7.5px;
+
+        #pxl-mixins.small();
+        #pxl-mixins.transition(color 0.2s ease);
+
+        &:before {
+          content: '';
+          position: absolute;
+          top: auto;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+        }
+        @media @normal {
+          padding-bottom: 10px;
+          color: transparent;
+          &:hover {
+            color: @pxl-color-active;
+          }
+        }
+      }
+    }
+  }
+
+}
+// Page
+
+.page-node-type-agenda-post {
+  .container {
+    .row {
+      .layout {
+        .layout__region--content{
+          .field--name-node-title h2 {
+            margin: 0;
+            padding-bottom: 25px;
+            font-weight: 600;
+            color: @text-color;
+            text-align: left;
+            letter-spacing: 0;
+          }
+          .field--name-field-date, .field--name-field-time {
+            #pxl-mixins.subtitle();
+            text-transform: uppercase;
+            line-height: 1;
+          }
+          .field--name-field-time {
+            display: inline-block;
+            &:after {
+              content: ' Uhr';
+            }
+          }
+          .field--name-field-ort {
+            #pxl-mixins.subtitle();
+            font-weight: 300;
+            color: @text-color;
+            text-align: left;
+            letter-spacing: 0;
+            line-height: 1;
+            text-transform: uppercase;
+          }
+          .field--name-body {
+            #pxl-mixins.resp-margin-top(25px;)
+          }
+        }
+      }
+    }
+  }
+}
+

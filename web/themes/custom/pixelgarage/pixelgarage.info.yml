@@ -1,0 +1,27 @@
+name: 'Pixelgarage'
+description: 'Standard theme of Pixelgarage.'
+type: theme
+core: 8.x
+version: 1.1
+base theme: bootstrap
+
+regions:
+  navigation: 'Navigation'
+  navigation_collapsible: 'Navigation (Collapsible)'
+  header: 'Top Bar'
+  highlighted: 'Highlighted'
+  help: 'Help'
+  content: 'Content'
+  sidebar_first: 'Primary'
+  sidebar_second: 'Secondary'
+  footer: 'Footer'
+  page_top: 'Page top'
+  page_bottom: 'Page bottom'
+
+libraries:
+  - pixelgarage/pixelgarage-styles
+  - pixelgarage/bootstrap-scripts
+  - pixelgarage/pixelgarage-scripts
+
+ckeditor_stylesheets:
+  - css/ckeditor.css

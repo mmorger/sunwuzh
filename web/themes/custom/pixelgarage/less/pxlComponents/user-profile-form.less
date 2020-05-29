@@ -1,0 +1,84 @@
+/*
+ *  User profile form component
+ * --------------------------------------------------*/
+
+// Variables
+// -------------------------
+@panel-separator-height: 30px;
+@fieldset-bg-color: #fff;
+@form-max-width: 960px;
+
+
+// Mixins
+// -------------------------
+
+
+// General settings
+// -------------------------
+form#user-profile-form {
+  margin: 0 auto @panel-separator-height;
+  max-width: @form-max-width;
+
+  @media @normal {
+    width: 50%;
+  }
+
+  div {
+    //
+    // fieldset
+    fieldset.panel, #edit-account {
+      margin: 20px 0 @panel-separator-height;
+      padding: 0;
+      border: none;
+      #pxl-mixins.border-radius(6px);
+      background-color: @fieldset-bg-color;
+      #pxl-mixins.box-shadow(none);
+
+      &.collapsed {
+
+      }
+
+      .panel-heading {
+        margin: 20px 0;
+        padding: 0;
+        border: none;
+        background: none;
+        text-align: left;
+
+        .panel-title {
+          #pxl-mixins.title();
+
+          &.collapsed {
+
+          }
+        }
+      }
+
+      .panel-body {
+        margin: 0;
+        padding: 0;
+      }
+
+      .summary {
+
+      }
+    }
+
+    //
+    // form element
+    .form-wrapper {
+      margin-bottom: 30px;
+
+      .form-item {
+        #pxl-mixins.form-items();
+      }
+    }
+
+    //
+    // form actions
+    .form-actions {
+      #pxl-mixins.form-action();
+    }
+  }
+
+}

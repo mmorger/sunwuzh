@@ -1,0 +1,45 @@
+/**
+ * Hide <select> and submit-button
+ */
+#views-exposed-form-aktuell-block-2 .form-type-select {
+  display: none;
+}
+#views-exposed-form-aktuell-block-2 .form-submit {
+  display: none;
+}
+
+/**
+ * Pure styling, should probably be put in your theme stylesheet
+ * instead of in this module
+ */
+#views-exposed-form-aktuell-block-2 {
+  .links-list {
+    padding-left: 0;
+    list-style-type: none;
+    #pxl-mixins.flexbox();
+    justify-content: center;
+    flex-flow: row wrap;
+
+    li {
+      margin-bottom: 15px;
+      a {
+        #pxl-mixins.navigation();
+        margin: 10px;
+        color: @pxl-color-brown;
+        #pxl-mixins.small();
+        font-weight: 400;
+        &.active {
+          color: @pxl-color-active;
+          font-weight: 600;
+          border-bottom: 1px solid @pxl-color-active;
+        }
+        @media @normal {
+          margin: 15px;
+          &:hover {
+            border-bottom: 1px solid @pxl-color-grayblue;
+          }
+        }
+      }
+    }
+  }
+}

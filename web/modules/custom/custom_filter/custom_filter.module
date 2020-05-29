@@ -1,0 +1,42 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: itz
+ * Date: 02.03.18
+ * Time: 14:39
+ */
+
+/**
+ * Implements hook_form_alter().
+ */
+function custom_filter_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  $view_names = array('news');
+  $view = $form_state->getStorage('view');
+  if ($form_id == 'views_exposed_form' && in_array($view['view']->id(), $view_names)) {
+
+    $form['#attached']['library'][] = 'custom_filter/custom_filter.enable';
+
+    // Extract the options from the Views Exposed Filter <select>-list.
+    $links = $form['tid']['#options'];
+
+    // Iterate over the options ($links) to build an array ($pop_array) of links.
+    $i = 0; // Initiate counter/index
+    $pop_array = array();
+    foreach ($links as $tid => $term_name) {
+      if ($tid == 'All') {
+        $pop_array[$i]['#markup'] = '<span class="filter-tab"><a href="" class="active" id="' . $tid . '">' . $term_name . '</a></span>';
+      }
+      else {
+        $pop_array[$i]['#markup'] = '<span class="filter-tab"><a href="" id="' . $tid . '">' . $term_name . '</a></span>';
+      }
+      $i++; // Increase counter/index
+    }
+
+    // Create the item-list the form should render.
+    $form['links'] = [
+      '#theme' => 'item_list',
+      '#items' => $pop_array,
+      '#attributes' => ['class' => ['tax-filter']],
+    ];
+  }
+}

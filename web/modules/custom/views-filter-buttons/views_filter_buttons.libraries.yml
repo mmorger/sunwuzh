@@ -1,0 +1,7 @@
+views_filter_buttons.enable:
+  version: VERSION
+  js:
+    js/views_filter_buttons.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupalSettings

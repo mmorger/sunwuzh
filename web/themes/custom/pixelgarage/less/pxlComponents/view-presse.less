@@ -1,0 +1,66 @@
+/*
+ *  View component
+ * --------------------------------------------------*/
+
+// Variables
+// -------------------------
+
+
+// Mixins
+// -------------------------
+
+
+
+// General settings
+// -------------------------
+.block-views-blockpressestimmen-block-1, .views-element-container  {
+ //background-color: @pxl-color-grayblue;
+
+ .view-pressestimmen {
+  #pxl-mixins.inner-container();
+
+  .col-1 {
+   .layout__region--content {
+    //border-top: solid 1px @text-color;
+    .field--name-body {
+     padding-left: 10px;
+     border-left: solid 2px @text-color; //@pxl-color-blue-1;
+     p {
+      display: inline;
+      #pxl-mixins.quote();
+     }
+     @media @normal {
+      padding-left: 40px;
+     }
+
+    }
+    .field--name-field-name {
+     #pxl-mixins.resp-margin-top(25px);
+     //padding-right: 2em;
+     padding-left: 10px;
+     #pxl-mixins.date();
+     //text-align: center;
+     &:before {
+      content: '– ';
+     }
+     @media @normal {
+      padding-left: 40px;
+     }
+    }
+   }
+  }
+ }
+}
+
+body.path-presse {
+ .view-pressestimmen {
+  .views-row {
+   #pxl-mixins.resp-margin-bottom(75px);
+   .layout__region--content {
+    .field--name-body {
+
+    }
+   }
+  }
+ }
+}

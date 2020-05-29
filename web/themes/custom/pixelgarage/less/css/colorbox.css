@@ -1,0 +1,77 @@
+/*
+ *  Colorbox styles
+ * --------------------------------------------------*/
+#colorbox #cboxWrapper {
+  background-color: #161414;
+  border-radius: 0;
+}
+#colorbox #cboxWrapper #cboxMiddleLeft,
+#colorbox #cboxWrapper #cboxMiddleRight,
+#colorbox #cboxWrapper #cboxBottomLeft,
+#colorbox #cboxWrapper #cboxBottomRight {
+  width: 0;
+}
+#colorbox #cboxWrapper #cboxContent {
+  margin: 0;
+  padding: 5px 75px 35px;
+  background-color: #161414;
+}
+#colorbox #cboxWrapper #cboxContent #cboxLoadedContent {
+  margin: 0;
+}
+#colorbox #cboxWrapper #cboxContent button {
+  opacity: 0.6;
+}
+#colorbox #cboxWrapper #cboxContent button:hover {
+  opacity: 1;
+}
+#colorbox #cboxWrapper #cboxContent button:focus {
+  outline: none;
+}
+#colorbox #cboxWrapper #cboxContent button#cboxPrevious {
+  left: 0;
+  top: 44%;
+  bottom: auto;
+  width: 48px;
+  height: 76px;
+  background: url(../images/colorbox-controls.svg) no-repeat 0px 0px;
+}
+#colorbox #cboxWrapper #cboxContent button#cboxPrevious:hover {
+  background-color: black;
+}
+#colorbox #cboxWrapper #cboxContent button#cboxNext {
+  right: 0;
+  top: 44%;
+  left: auto;
+  bottom: auto;
+  width: 48px;
+  height: 76px;
+  background: url(../images/colorbox-controls.svg) no-repeat -48px 0px;
+}
+#colorbox #cboxWrapper #cboxContent button#cboxNext:hover {
+  background-color: black;
+}
+#colorbox #cboxWrapper #cboxContent button#cboxClose {
+  top: 0;
+  right: 15px;
+  bottom: auto;
+  width: 32px;
+  height: 32px;
+  background: url(../images/colorbox-controls.svg) no-repeat -96px 0px;
+}
+#colorbox #cboxWrapper #cboxContent #cboxCurrent {
+  bottom: 4px;
+  right: 75px;
+  text-align: right;
+}
+#colorbox #cboxWrapper #cboxContent #cboxLoadingOverlay {
+  background-color: #161414;
+}
+#colorbox #cboxWrapper #cboxContent #cboxLoadingGraphic {
+  margin-left: auto;
+  margin-right: auto;
+  width: 100px;
+  height: 100px;
+  background: none;
+  background-size: contain;
+}

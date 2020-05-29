@@ -1,0 +1,40 @@
+# Pixelgarage Breakpoints (first match according to weight is taken => no stacked breakpoints needed)
+pixelgarage.wide:
+  label: wide
+  mediaQuery: 'only screen and (min-width:80em)'
+  weight: 0
+  multipliers:
+    - 1x
+    - 2x
+
+pixelgarage.desktop:
+  label: desktop
+  mediaQuery: 'only screen and (min-width:64em)'
+  weight: 1
+  multipliers:
+    - 1x
+    - 2x
+
+pixelgarage.tablet:
+  label: tablet
+  mediaQuery: 'only screen and (min-width:48em)'
+  weight: 2
+  multipliers:
+    - 1x
+    - 2x
+
+pixelgarage.narrow:
+  label: narrow
+  mediaQuery: 'only screen and (min-width:30em)'
+  weight: 3
+  multipliers:
+    - 1x
+    - 2x
+
+pixelgarage.mobile:
+  label: mobile
+  mediaQuery: ''
+  weight: 4
+  multipliers:
+    - 1x
+    - 2x

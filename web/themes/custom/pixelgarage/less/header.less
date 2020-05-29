@@ -1,0 +1,493 @@
+/*
+ *  Header section (navigation)
+ * --------------------------------------------------*/
+
+// Variables
+// -------------------------
+@burger-icon-bar-offset: 6px;
+
+
+// Mixins
+// -------------------------
+
+
+
+// Main settings
+// -------------------------
+body.toolbar-fixed {
+  &.toolbar-horizontal {
+    #navbar-collapse {
+      padding-top: 80px !important;
+    }
+  }
+  &.toolbar-vertical {
+    #navbar-collapse {
+      padding-top: 40px !important;
+    }
+  }
+}
+
+header#navbar {
+  background: @pxl-color-header;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  max-width: none;
+  border: none;
+  border-radius: 0;
+
+  //.container, .container-fluid {
+  //  padding: 20px @grid-gutter-width / 2;
+  //}
+
+  .navbar-header {
+    position: fixed;
+    top: 0;
+    margin-left: 0;
+    padding: 0;
+    width: 100%;
+    height: 40px; //100vh;
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    z-index: 111;
+    #pxl-mixins.transition(background-color 0.3s ease-in-out);
+
+    @media @normal {
+      height: 60px;
+    }
+
+    &.nav-solid {
+      @media @normal {
+        background-color: @pxl-color-body-bg;
+      }
+      #block-pixelgarage-branding {
+        opacity: 1;
+      }
+    }
+
+    //opacity: 0;
+    //position: absolute;
+    //margin: 0;
+    //top: 3rem;
+    //width: 100%;
+    //z-index: 102;
+
+
+    .region-navigation-collapsible {
+      height: 100%;
+    }
+
+    #block-pixelgarage-branding {
+      #pxl-mixins.flexbox();
+      justify-content: center;
+      //top: 0;
+      //left: 0;
+      opacity: 1;
+      #pxl-mixins.transition(opacity 0.3s ease-in-out);
+      z-index: 778;
+
+      @media @normal {
+        position: absolute;
+        opacity: 0;
+      }
+
+      > a {
+        padding-top: 15px;
+        height: 40px;
+
+        @media @normal {
+          padding-top: 10px;
+          padding-left: 8px;
+          height: 52px;
+        }
+
+        @media screen and (min-width: 1800px) {
+          padding-left: 0;
+        }
+
+        img.logo {
+          margin: 0;
+          padding: 0;
+          margin-left: auto;
+          margin-right: auto;
+          //width: 210px;
+          height: 100%;
+
+          //height: 60px;
+          //
+          //@media @tablet {
+          //  margin-left: 5rem;
+          //  width: 20vw;
+          //}
+          //@media @normal {
+          //  margin-left: 5rem;
+          //  width: 30vw;
+          //  max-width: 30rem;
+          //  //max-height: 50vh;
+          //}
+        }
+      }
+    }
+
+    .navbar-toggle {
+      // navbar toggle with burger
+      position: fixed;
+      margin: 0;
+      padding: 20px 0 10px;
+      border: none;
+      right: 2rem;
+      z-index: 777;
+
+      @media @tablet {
+        display: block;
+      }
+      @media @normal {
+        display: none;
+      }
+
+      &:hover, &:focus, &.active {
+        background-color: transparent;
+      }
+      .icon-bar {
+        width: 24px;
+        height: 1px;
+        transition: all .3s;
+        -webkit-transform: translateY(0px) rotate(0deg);
+        -ms-transform: translateY(0px) rotate(0deg);
+        transform: translateY(0px) rotate(0deg);
+        + .icon-bar {
+          margin-top: 5px;
+        }
+      }
+      &[aria-expanded='true'] {
+        .icon-bar {
+          position: relative;
+          //top: -7px;
+          &.first {
+            -webkit-transform: translateY(@burger-icon-bar-offset) rotate(45deg);
+            -ms-transform: translateY(@burger-icon-bar-offset) rotate(45deg);
+            transform: translateY(@burger-icon-bar-offset) rotate(45deg);
+          }
+          &.second {
+            opacity: 0;
+          }
+          &.third {
+            -webkit-transform: translateY(-@burger-icon-bar-offset) rotate(-45deg);
+            -ms-transform: translateY(-@burger-icon-bar-offset) rotate(-45deg);
+            transform: translateY(-@burger-icon-bar-offset) rotate(-45deg);
+          }
+        }
+      }
+    }
+  }
+
+  // collapse part
+  .navbar-collapse {
+
+    #pxl-mixins.transition(opacity 0.3s ease-in-out);
+    #pxl-mixins.transition(height 0s);
+    background-color: @pxl-color-body-bg;
+    opacity: 0;
+    height: 0;
+    border-top: none;
+
+    &.collapse {
+      display: block !important;
+      //height: 100vh !important;
+    }
+    &.collapsing {
+      display: block !important;
+      //height: 100vh !important;
+    }
+    &[aria-expanded='true'] {
+      opacity: 1;
+      height: 100vh !important;
+      nav {
+        display: block;
+      }
+    }
+
+    // main menu
+    nav {
+      display: none;
+      padding-top: 50px;
+      text-align: center;
+
+      ul.navbar-nav {
+        margin: 0;
+        width: 100%;
+
+        li {
+          float: none;
+          &.active {
+            a {
+              color: @pxl-color-active;
+              background: none;
+            }
+          }
+
+          a {
+            #pxl-mixins.navigation();
+          }
+        }
+      }
+    }
+
+    @media @normal {
+      display: block;
+      //position: fixed;
+      top: 0;
+      //margin-left: 5rem;
+      padding: 0;
+      width: 100%;
+      height: auto;
+      opacity: 1;
+      background-color: transparent;
+      #pxl-mixins.transition(all 0.3s ease-in-out);
+
+      //&:before {
+      //  position: absolute;
+      //  content: '';
+      //  width: 140px;
+      //  height: 60px;
+      //  background: center left no-repeat url(../images/SUN-WU-Logo-minimal.png);
+      //  background-size: contain;
+      //  opacity: 0;
+      //}
+      //
+      //&.nav-solid {
+      //  background-color: @pxl-color-body-bg;
+      //  &:before {
+      //    opacity: 1;
+      //  }
+      //}
+
+      // main menu
+      nav {
+        display: block;
+        padding-top: 0;
+        text-align: left;
+
+        ul.navbar-nav {
+          margin: 0;
+          //position: fixed;
+          padding: 0 25px;
+          top: 0;
+          left: 0;
+          width: 100%;
+          max-width: 1800px;
+          height: 60px;
+          background-color: transparent;
+          #pxl-mixins.flexbox();
+          justify-content: flex-end;
+          align-items: center;
+
+          li {
+            float: none;
+
+            &.active {}
+
+            a {
+              padding: 15px;
+              #pxl-mixins.transition(color 0.1s ease-in-out);
+
+              &:hover {
+                &:not(.is-active) {
+                  color: @pxl-color-dark-red;
+                }
+              }
+              &.is-active {
+                &:hover {
+                  opacity: 1;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    @media screen and (min-width: 1800px) {
+      max-width: 1600px;
+    }
+    /*
+    @media @normal {
+
+      nav {
+        ul.navbar-nav {
+          position: fixed;
+          padding: 0 25px;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 50px;
+          background-color: black;
+          #pxl-mixins.flexbox();
+          justify-content: flex-end;
+          align-items: center;
+
+          li {
+
+
+            a {
+              padding: 15px;
+
+
+
+              &:hover {
+                opacity: 0.6;
+                text-decoration: @link-decoration-hover;
+                background: transparent;
+              }
+            }
+          }
+        }
+      }
+    }
+    */
+
+  }
+
+  // Header Background Image
+
+  .header-background {
+    position: relative;
+    overflow: hidden;
+    z-index: 101;
+    background-color: black;
+    height: 100vw;
+    max-height: 100vh;
+    background-size: cover;
+    background-position-x: center;
+    background-position-y: center;
+    background-attachment: scroll;
+
+    @media @tablet {
+      max-height: 350px;
+    }
+    @media @normal {
+      height: 50vh;
+      min-height: 350px;
+      max-height: 450px;
+    }
+
+    .logo-wrapper {
+      position: absolute;
+      padding: 35px;
+      width: 100%;
+      height: 90%;
+      #pxl-mixins.flexbox();
+      justify-content: center;
+      z-index: 102;
+
+      @media @normal {
+        justify-content: left;
+        //height: 100%;
+      }
+
+      .logo-big {
+        width: 50vw;
+        height: auto;
+        background: center center no-repeat url(../images/sunwu-logo.png);
+        background-size: contain;
+
+        @media @tablet {
+          width: 20vw;
+          //height: 20vw;
+        }
+        @media @normal {
+          margin-left: 5rem;
+          //width: 30vw;
+          //height: 30vw;
+          max-width: 30rem;
+          background-position-x: left;
+          background-position-y: top;
+          //max-height: 50vh;
+        }
+      }
+    }
+    &:after {
+      position: absolute;
+      bottom: -1px;
+      display: block;
+      width: 100%;
+      height: 60px;
+      content: '';
+      background: bottom center no-repeat url(../images/Textur_Header_BG_2.png);
+      background-size: cover;
+      @media @tablet {
+        height: 75px;
+      }
+      @media @normal {
+        height: 95px;
+      }
+    }
+    #bgvideo {
+      &.mobile {
+        width: 100%;
+        height: auto;
+      }
+      &.desktop {
+        position: relative;
+        min-width: 100%;
+        min-height: 100%;
+        width: auto;
+        height: auto;
+        //#pxl-mixins.center-vertically();
+        #pxl-mixins.center-horizontally();
+
+        @media @tablet {
+          width: 100%;
+
+        }
+        @media @normal {
+          width: auto;
+          height: 100%;
+        }
+
+        @media screen and (min-width: 1450px) {
+          min-width: none;
+          width: 100%;
+          height: auto;
+        }
+      }
+    }
+  }
+}
+body {
+  // Header Height L
+  &.path-frontpage,
+  &.page-node-2,
+  &.page-node-3,
+  &.page-node-4,
+  &.page-node-13,
+  &.page-node-19,
+  &.page-node-21,
+  &.page-node-22{
+    header#navbar {
+      .header-background {
+        position: relative;
+        overflow: hidden;
+        height: 100vw;
+
+        @media @normal {
+          height: 90vh;
+          max-height: 800px;
+        }
+      }
+    }
+  }
+  //// Header Height M
+  //&.path-kalender, &.page-node-11, &.page-node-type-news { // Kalender + Biografie
+  //  header#navbar {
+  //    .header-background {
+  //      height: 70vh;
+  //
+  //      @media @normal {
+  //        //height: 90vh;
+  //        max-height: 70vh;
+  //      }
+  //    }
+  //  }
+  //}
+}

@@ -1,0 +1,7 @@
+custom_filter.enable:
+  version: VERSION
+  js:
+    js/custom_filter.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupalSettings

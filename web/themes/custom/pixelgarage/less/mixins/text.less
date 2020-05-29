@@ -1,0 +1,299 @@
+/*
+ *  Text mixins
+ * --------------------------------------------------*/
+
+// Variables
+// -------------------------
+@pxl-color-glow: #40856D;
+
+
+// Mixins
+// -------------------------
+#pxl-mixins {
+  //
+  //  TEXT optimisation
+  //
+
+  // Language dependant word hyphenation (language has to be set in html element)
+  .hyphenate(@mode: auto) {
+    // Non standard for webkit, breaks between words
+    word-break: break-word;
+
+    // uses dictionaries for correct word breaking in supported languages
+    -webkit-hyphens: @mode;
+    -moz-hyphens: @mode;
+    -ms-hyphens: @mode;
+    -o-hyphens: @mode;
+    hyphens: @mode;
+  }
+
+  //
+  // Sharper font smoothing for modern browsers
+  .sharp-fonts() {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    // Subpixel Rendering -> https://www.mobomo.com/2014/05/better-font-smoothing-in-chrome-on-mac-os-x
+    @media only screen and (-webkit-min-device-pixel-ratio: 1.25),
+    only screen and ( min-device-pixel-ratio: 1.25),
+    only screen and ( min-resolution: 200dpi),
+    only screen and ( min-resolution: 1.25dppx) {
+      -webkit-font-smoothing: antialiased;
+    }
+  }
+
+  //
+  // Placeholder
+  .placeholder(@color: @input-color-placeholder; @text-align: left) {
+    // Firefox
+    &::-moz-placeholder {
+      text-align: @text-align;
+      color: @color;
+      opacity: 1; // Override Firefox's unusual default opacity; see https://github.com/twbs/bootstrap/pull/11526
+    }
+    &:-ms-input-placeholder { text-align: @text-align; color: @color; } // Internet Explorer 10+
+    &::-webkit-input-placeholder  { text-align: @text-align; color: @color; } // Safari and Chrome
+  }
+
+  //
+  // responsive font size with minimum and maximum size
+  .font-size-responsive(@max-size: @resp-font-size-max; @med-size: @resp-font-size-med; @min-size: @resp-font-size-min) {
+    @min-max-breakpoint: unit((48 * @min-size / @med-size), em);
+    @font-break:  ~"screen and (min-width: @{min-max-breakpoint})";
+
+    // min font size
+    font-size: @min-size;
+
+    // dynamic font size
+    @media @font-break {
+      font-size: unit(@med-size/7.68, vw);
+    }
+
+    // maed.font size
+    @media @tablet {
+      font-size: @med-size;
+    }
+    // max.font size
+    @media @normal {
+      font-size: @max-size;
+    }
+  }
+
+  //
+  // navigation, title, subtitle, text styles
+  .navigation() {
+    padding: 5px 0px;
+    font-family: @pxl-text-font-bold;
+    font-size: 15px;
+    //font-weight: 700;
+    color: @pxl-color-main;
+    line-height: 1.6;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+
+    &.is-active {
+      color: @pxl-color-active;
+      background: none;
+    }
+    &:focus, .active {
+      background-color: transparent;
+    }
+    @media @normal {
+      line-height: 1;
+    }
+  }
+
+  .title() {
+    font-family: @pxl-title-font;
+    .font-size-responsive(@resp-title-size-max, @resp-title-size-med, @resp-title-size-min);
+    letter-spacing: @title-letter-spacing;
+    line-height: @title-line-height;
+    text-align: @title-text-align;
+    color: @title-color;
+    text-transform: uppercase;
+  }
+
+  .subtitle() {
+    font-family: @pxl-title-font;
+    .font-size-responsive(@resp-subtitle-size-max, @resp-subtitle-size-med, @resp-subtitle-size-min);
+    letter-spacing: @subtitle-letter-spacing;
+    line-height: @subtitle-line-height;
+    text-align: @subtitle-text-align;
+    color: @text-color;
+    //font-weight: 700;
+    text-transform: none;
+  }
+  .lead {
+    font-family: @pxl-text-font;
+    .font-size-responsive(@resp-lead-size-max, @resp-lead-size-med, @resp-lead-size-min);
+    letter-spacing: @text-letter-spacing;
+    line-height: @text-line-height;
+    text-align: center;
+    color: @text-color;
+  }
+  .text() {
+    font-family: @pxl-text-font;
+    font-weight: 400;
+    .font-size-responsive();
+    letter-spacing: @text-letter-spacing;
+    line-height: @text-line-height;
+    text-align: @text-text-align;
+    color: @text-color;
+  }
+  .small() {
+    //font-family: @font-family-serif;
+    .font-size-responsive(@resp-small-size-max, @resp-small-size-med, @resp-small-size-min);
+    line-height: 1.2;
+  }
+  .date() {
+    #pxl-mixins.font-size-responsive(@resp-small-size-max, @resp-small-size-med, @resp-small-size-min);
+    font-family: @font-family-sans-serif;
+    font-weight: 600;
+    color: @text-color;
+    line-height: 1.2;
+    text-transform: uppercase;
+    letter-spacing: 0.075em;
+  }
+  .quote() {
+    .subtitle ();
+    color: @text-color; // @pxl-color-main;
+    line-height: 1.2;
+    letter-spacing: -0.007em;
+
+    @media @tablet {
+      //padding: 2px 0 2px 25px;
+    }
+
+    &:before {
+      content: '«';
+      padding-right: 0.075em;
+    }
+    &:after {
+      content: '»';
+      padding-left: 0.075em;
+    }
+  }
+
+  .paragraph-first-letter() {
+    p::first-letter {
+      .title();
+      float: left;
+      vertical-align: top;
+    }
+  }
+
+  //
+  // WYSIWYG body
+  .wysiwyg-body() {
+    h1, h2, h3, .pxl-title {
+      margin: 10px auto 20px;
+      .title();
+    }
+
+    h4, h5, h6, .pxl-subtitle {
+      margin: 10px auto;
+      .subtitle();
+    }
+
+    p {
+      margin: 0 0 10px;
+      .text();
+      .hyphenate;
+    }
+    //
+    //.pxl-glow {
+    //  .glow();
+    //}
+
+    .pxl-quote {
+      .title();
+      text-align: center;
+    }
+
+    a {
+      .text();
+      color: @link-color;
+
+      &:hover, &:focus {
+        color: @link-color-hover;
+        text-decoration: @link-decoration-hover;
+        background: none;
+      }
+    }
+
+    pre, address, i, em {
+      .text();
+      font-family: @pxl-text-font-italic;
+    }
+
+    strong, b {
+      .text();
+      font-family: @pxl-text-font-bold;
+    }
+
+    u {
+      .text();
+      color: @link-color;
+
+      &:hover, &:focus {
+        color: @link-hover-color;
+      }
+    }
+
+    mark {
+      .text();
+      background-color: #ff0;
+    }
+
+    hr {
+      border: 0;
+      border-bottom: 2px solid @pxl-color-border-active;
+      background: none;
+    }
+
+    img {
+      display: block;
+      overflow: hidden;
+      margin: 20px auto;
+      padding: 0;
+      max-width: 100%;
+      height: auto;
+    }
+
+    embed, video, audio, iframe {
+      display: block;
+      overflow: hidden;
+      margin: 20px auto;
+      padding: @grid-gutter-width/2;
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+      min-height: 350px;
+    }
+  }
+
+  //
+  // CSS3 Glow Animation
+  //
+  .animation(@animation) {
+    -webkit-animation: @animation;
+    -o-animation: @animation;
+    animation: @animation;
+  }
+/*
+  .keyframes-text-glow(@color: @pxl-color-glow) {
+    @-webkit-keyframes text-glow {
+      from { text-shadow: 0 0 8px @color, 0 0 8px @color, 0 0 8px @color, 0 0 12px @color, 0 0 12px @color, 0 0 12px @color, 0 0 18px @color, 0 0 22px @color;  }
+      to   { text-shadow: 0 0 12px @color, 0 0 12px @color, 0 0 12px @color, 0 0 24px @color, 0 0 24px @color, 0 0 24px @color, 0 0 24px @color, 0 0 32px @color;  }
+    }
+    @-moz-keyframes text-glow {
+      from { text-shadow: 0 0 8px @color, 0 0 8px @color, 0 0 8px @color, 0 0 12px @color, 0 0 12px @color, 0 0 12px @color, 0 0 18px @color, 0 0 22px @color;  }
+      to   { text-shadow: 0 0 12px @color, 0 0 12px @color, 0 0 12px @color, 0 0 24px @color, 0 0 24px @color, 0 0 24px @color, 0 0 24px @color, 0 0 32px @color;  }
+    }
+    @keyframes text-glow {
+      from { text-shadow: 0 0 8px @color, 0 0 8px @color, 0 0 8px @color, 0 0 12px @color, 0 0 12px @color, 0 0 12px @color, 0 0 18px @color, 0 0 22px @color;  }
+      to   { text-shadow: 0 0 12px @color, 0 0 12px @color, 0 0 12px @color, 0 0 24px @color, 0 0 24px @color, 0 0 24px @color, 0 0 24px @color, 0 0 32px @color;  }
+    }
+  }
+  */
+
+}

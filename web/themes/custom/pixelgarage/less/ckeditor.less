@@ -1,0 +1,44 @@
+/*
+ *  CKEditor styles
+ * --------------------------------------------------*/
+@import "variable-overrides.less";
+@import "fonts";
+@import "mixins/text";
+
+// Variables
+// -------------------------
+
+
+// Mixins
+// -------------------------
+//
+
+
+// Main settings
+// -------------------------
+.pxl-title {
+  margin: 20px auto;
+  #pxl-mixins.title();
+  color: @pxl-color-black;
+}
+
+.pxl-subtitle {
+  #pxl-mixins.subtitle();
+  color: @pxl-color-black;
+}
+
+.pxl-normal {
+  #pxl-mixins.text();
+  color: @pxl-color-black;
+}
+
+//.pxl-glow {
+//  #pxl-mixins.glow();
+//}
+
+.pxl-quote {
+  #pxl-mixins.title();
+  text-align: center;
+  color: @pxl-color-black;
+}
+

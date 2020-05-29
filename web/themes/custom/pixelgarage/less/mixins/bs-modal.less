@@ -1,0 +1,168 @@
+/*
+ *  Modal dialog component
+ * --------------------------------------------------*/
+
+// Variables
+// -------------------------
+@pxl-modal-background-color: rgba(0,0,0,1.0);
+@pxl-modal-max-width: 800px;
+@pxl-fading-height: 0px;
+
+// Mixins
+// -------------------------
+#pxl-mixins {
+  //
+  // body top fading
+  .body-fading() {
+    display: block;
+    position: absolute;
+    top: auto;
+    left: 0;
+    right: 0;
+    height: @pxl-fading-height;
+    z-index: 10;
+
+    &.body-fading-top {
+      bottom: -@pxl-fading-height;
+      #gradient.vertical(#aaa, rgba(0,0,0,0.0));
+    }
+
+    &.body-fading-bottom {
+      top: -@pxl-fading-height;
+      #gradient.vertical(rgba(0,0,0,0.0), #aaa);
+    }
+  }
+
+  //
+  // Bootstrap modal
+  .modal() {
+    background-color: @pxl-modal-background-color;
+
+    &.modal-fixed-height {
+      // full size modal on small screen, body is scrolling
+      height: 100%;
+      overflow: hidden;
+
+      .modal-dialog {
+        height: 100%;
+
+        .modal-content {
+          height: 100%;
+
+          .modal-header, .modal-footer {
+            position: relative;
+
+            .body-fading {
+              .body-fading();
+            }
+          }
+
+          .modal-body {
+            overflow-y: auto;
+          }
+        }
+      }
+    }
+
+    .modal-dialog {
+      margin: 0 auto;
+      width: 100%;
+
+      .admin-menu & {
+        margin: 29px auto 0;
+      }
+
+      @media @narrow {
+        min-width: 480px;
+        max-width: 690px;
+        width: 90%;
+      }
+      @media @tablet {
+        max-width: @pxl-modal-max-width;
+      }
+      @media @normal {
+        width: @pxl-modal-max-width;
+      }
+
+      .modal-content {
+        position: relative;
+        padding: 0;
+        background: none;
+
+        #pxl-mixins.border-radius(0);
+        border: none;
+        #pxl-mixins.box-shadow(none);
+
+        .modal-header {
+          padding: 0;
+          min-height: 60px;
+          border: none;
+
+          h2.modal-title {
+            #pxl-mixins.title();
+          }
+
+          button.close {
+            display: block;
+            position: absolute;
+            top: 0;
+            right: 10px;
+            opacity: 1.0;
+            text-shadow: none;
+            z-index: 1; // has to be above body
+
+            span {
+              padding: 0;
+              font-family: @pxl-text-font-light;
+              font-size: 60px;
+              font-weight: normal;
+              color: @text-color;
+            }
+          }
+
+          .body-fading {
+            display: none;
+          }
+        }
+
+        .modal-body {
+          // content styled separately
+          padding: 20px (@grid-gutter-width / 2) 30px;
+
+          @media @narrow {
+            padding-bottom: 50px;
+          }
+        }
+
+        .modal-footer {
+          display: none;
+          padding: 10px 0;
+          border: none;
+          text-align: center;
+
+          .btn {
+            // close button
+            display: inline-block;
+            font-family: @pxl-text-font-bold;
+            color: @pxl-color-bg-button-hover;
+            #pxl-mixins.border-radius(@border-radius-large);
+            border: 2px solid @text-color;
+            background-color: @pxl-color-bg-button;
+            .box-shadow(@pxl-box-shadow);
+
+            &:hover {
+              color: @pxl-color-bg-button;
+              background-color: @pxl-color-bg-button-hover;
+            }
+
+          }
+
+          .body-fading {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
+

@@ -1,0 +1,45 @@
+/*
+ *  Buttons component
+ * --------------------------------------------------*/
+
+// Variables
+// -------------------------
+
+
+// Mixins
+// -------------------------
+
+
+// General settings
+// -------------------------
+
+.field--name-field-subnav, .field--name-field-submenu {
+  #pxl-mixins.resp-margin-bottom(50px);
+  #pxl-mixins.flexbox();
+  justify-content: center;
+  text-align: center;
+
+
+  li {
+    display: inline-block;
+    a {
+      #pxl-mixins.navigation();
+      margin: 10px;
+      color: @pxl-color-brown;
+      background-color: transparent;
+      #pxl-mixins.small();
+      font-weight: 400;
+      line-height: 1;
+      letter-spacing: 0.075em;
+      border-bottom: 1px solid @pxl-color-brown;
+      &:hover {
+        color: @pxl-color-active;
+        background-color: transparent;
+      }
+      @media @normal {
+        margin: 15px;
+        line-height: 1;
+      }
+    }
+  }
+}
